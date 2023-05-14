@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Dimensions  } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 
 const App = () => {
@@ -9,10 +10,10 @@ const App = () => {
     if (text === '=') {
       calculateResult();
     } 
-    else if (text == 'CLEAR'){
+    else if (text == 'AC'){
       handleClear();
     }
-    else if (text == 'DEL'){
+    else if (text == 'C'){
       handleDelete();
     }
     else {
@@ -41,11 +42,11 @@ const App = () => {
 
 
   const buttons = [
-    ['CLEAR', 'DEL'],
-    ['7', '8', '9', '/'],
-    ['4', '5', '6', '*'],
-    ['1', '2', '3', '-'],
-    ['.', '0', '=', '+'],
+    ['AC', 'C', '%','/'],
+    ['7', '8', '9', '*'],
+    ['4', '5', '6', '-'],
+    ['1', '2', '3', '+'],
+    ['0', '.', '='],
   ];
 
   return (
@@ -58,16 +59,21 @@ const App = () => {
             {row.map((button) => (
               <TouchableOpacity
                 key={button}
-                style={[styles.button, button === 'CLEAR' || button === 'DEL' ? styles.specialButton : null, ]}
+                style={[styles.button, button === '0' ? styles.specialButton : null,
+                button === '=' || button === '+' || button === '-'  || button === '*'  || button === '/' ? styles.operators : null, 
+                button === 'AC'  || button === 'C'  || button === '%' ? styles.firstRow : null, ]}
                 onPress={() => handleButtonPress(button)}>
-                  
+                   {button === 'C' ? (
+                       <Icon name="chevron-left" size={30} color="white" style={styles.icon} />
+                      ) : (
                 <Text style={styles.buttonText}>
+               
                 {button}
+                
                   </Text> 
+)}
               </TouchableOpacity>
-            )
-            )
-            }
+            ))}
           </View>
         ))}
       </View>
@@ -76,19 +82,25 @@ const App = () => {
 };
 
 const styles = StyleSheet.create({
+
   container: {
+
+    borderWidth: 1, 
+    borderColor: 'black', 
+    borderRadius: 5,
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
     alignItems: 'center',
     backgroundColor: 'grey',
   },
+
   result: {
     fontSize: 48,
     marginBottom: 24,
+    color:'black',
   },
   buttonContainer: {
-   
-    borderRadius: 5,
+    borderRadius: 50,
     borderColor: 'black',
     flexDirection: 'row',
     padding: 20,
@@ -103,23 +115,33 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   button: {
-    borderWidth: 1,
-    borderColor: 'grey',
-    backgroundColor: 'black',
-    borderRadius: 5,
+    borderWidth: 2,
+    borderColor: 'black',
+    backgroundColor: 'grey',
+    borderRadius: 15,
     padding: 20,
-    width: '20%',
+    width: '25%',
     alignItems: 'center',
     justifyContent: 'center',
+    
   },
   specialButton: {
-    width: '40%', 
+    width: '50%', 
     padding: 20,
   },
-  
+  operators:{
+    backgroundColor:'orange',
+  },
+  firstRow:{
+    backgroundColor:'darkgrey',
+  },
   buttonText: {
     fontSize: 24,
     color:'white',
+  },
+  icon:{
+    fontSize: 20,
+    padding: 4.5,
   },
 });
 
