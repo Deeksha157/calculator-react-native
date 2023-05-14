@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Dimensions  } from 'react-native';
+
 
 const App = () => {
   const [result, setResult] = useState('');
@@ -42,7 +43,7 @@ const App = () => {
   const buttons = [
     ['CLEAR', 'DEL'],
     ['7', '8', '9', '/'],
-    ['4', '5', '6', 'x'],
+    ['4', '5', '6', '*'],
     ['1', '2', '3', '-'],
     ['.', '0', '=', '+'],
   ];
@@ -59,6 +60,7 @@ const App = () => {
                 key={button}
                 style={[styles.button, button === 'CLEAR' || button === 'DEL' ? styles.specialButton : null, ]}
                 onPress={() => handleButtonPress(button)}>
+                  
                 <Text style={styles.buttonText}>
                 {button}
                   </Text> 
@@ -85,6 +87,9 @@ const styles = StyleSheet.create({
     marginBottom: 24,
   },
   buttonContainer: {
+   
+    borderRadius: 5,
+    borderColor: 'black',
     flexDirection: 'row',
     padding: 20,
     flexWrap: 'wrap',
@@ -98,7 +103,10 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   button: {
+    borderWidth: 1,
+    borderColor: 'grey',
     backgroundColor: 'black',
+    borderRadius: 5,
     padding: 20,
     width: '20%',
     alignItems: 'center',
@@ -108,6 +116,7 @@ const styles = StyleSheet.create({
     width: '40%', 
     padding: 20,
   },
+  
   buttonText: {
     fontSize: 24,
     color:'white',
