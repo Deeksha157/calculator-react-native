@@ -100,8 +100,8 @@ const styles = StyleSheet.create({
     color:'black',
   },
   buttonContainer: {
-    borderRadius: 50,
-    borderColor: 'black',
+    borderRadius: 20,
+    borderColor: 'rgba(0,0,0,0.2)',
     flexDirection: 'row',
     padding: 20,
     flexWrap: 'wrap',
@@ -116,10 +116,10 @@ const styles = StyleSheet.create({
   },
   button: {
     borderWidth: 2,
-    borderColor: 'black',
+    borderColor: 'rgba(0,0,0,0.1)',
     backgroundColor: 'grey',
     borderRadius: 15,
-    padding: 20,
+    padding: 18,
     width: '25%',
     alignItems: 'center',
     justifyContent: 'center',
